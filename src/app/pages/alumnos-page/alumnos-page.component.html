@@ -1,0 +1,61 @@
+<div class="page-wrapper">
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Formulario Alumnos</h1>
+      
+      <!-- Línea ondulada decorativa -->
+      <div class="wavy-line">
+        <svg viewBox="0 0 200 20" preserveAspectRatio="none">
+          <path d="M 0,10 Q 50,0 100,10 T 200,10" stroke="currentColor" stroke-width="1.5" fill="none" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </div>
+      
+      <!-- Lorem Ipsum -->
+      <p class="hero-subtitle">
+        Gestiona de forma eficiente los datos de tus estudiantes. Agrega, edita o elimina información de manera rápida y segura.
+      </p>
+    </div>
+  </section>
+
+  <!-- NAVEGACIÓN TAB-STYLE -->
+  <section class="nav-tabs-section">
+    <nav class="nav-tabs">
+      <button 
+        class="nav-tab-link" 
+        (click)="scrollAlFormulario()"
+        [class.active]="activeTab() === 'form'"
+      >
+        Formulario Alumno
+      </button>
+      <button 
+        class="nav-tab-link" 
+        (click)="scrollAlLista()"
+        [class.active]="activeTab() === 'list'"
+      >
+        Lista Alumnos
+      </button>
+      <div class="nav-tab-underline"></div>
+    </nav>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="page-container">
+    <!-- SECCIÓN DEL FORMULARIO -->
+    <section #formularioSection class="form-section content-section">
+      <app-alumno-form
+        [estaEditando]="estaEditando()"
+        (alumnoEditado)="onAlumnoGuardado($event)"
+      />
+    </section>
+
+    <!-- SECCIÓN DE LA LISTA -->
+    <section #listaSection class="list-section content-section">
+      <app-alumno-list
+        [alumnos]="alumnos()"
+        (alumnoEditado)="onEditarAlumno($event)"
+        (alumnoEliminado)="onEliminarAlumno($event)"
+      />
+    </section>
+  </div>
+</div>
